@@ -1,0 +1,14 @@
+name = "random-ramiz-generator"
+main = "worker/index.js"
+compatibility_date = "2025-09-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[vars]
+# Sırayla denenir: biri kotaya takılırsa sıradakine geçer.
+GEMINI_MODELS = "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash"
+
+# GEMINI_API_KEY bir "secret" olarak Cloudflare panelinden eklenir, buraya YAZMAYIN.

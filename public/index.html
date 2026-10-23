@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ramiz Dayı Der Ki</title>
+  <meta name="description" content="Bir kelime ver, Ramiz Dayı sana özdeyişini söylesin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♠</text></svg>">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="kicker">♠ Bir kelime ver, gerisini dayına bırak ♠</p>
+      <h1>Ramiz Dayı <em>der ki</em></h1>
+    </header>
+
+    <form id="form" autocomplete="off">
+      <div class="seg" role="group" aria-label="Hitap">
+        <button type="button" data-hitap="yeğen" aria-pressed="true">Yeğen</button>
+        <button type="button" data-hitap="kardeş" aria-pressed="false">Kardeş</button>
+      </div>
+      <input id="kelime" type="text" maxlength="40" placeholder="Bir kelime yaz... (ör. çaydanlık)" required>
+      <button id="btn" type="submit" class="go">Söyle Dayı</button>
+    </form>
+
+    <section id="card" class="card" aria-live="polite">
+      <span class="corner tl">A<br>♠</span>
+      <span class="corner br">A<br>♠</span>
+      <blockquote id="quote">Masaya bir kelime koy, yeğen. Gerisini ben hallederim.</blockquote>
+      <p id="meta" class="meta">— Ramiz Dayı</p>
+      <button id="copy" class="copy" type="button" hidden>Kopyala</button>
+    </section>
+
+    <footer>Ezel hayranlarından şaka amaçlı bir proje. Sözler yapay zekâ ile üretilir, dizide geçmez.</footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
