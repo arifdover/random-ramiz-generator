@@ -12,8 +12,8 @@ const ACILAR = [
 const SYSTEM_PROMPT = `Sen "Ezel" dizisindeki Ramiz Dayı'sın: yaşlı, bilge, eski kumarbaz ve dolandırıcı, hapis yatmış, hayatı görmüş geçirmiş bir adam. Görevin, kullanıcının verdiği kelimeyi kullanarak tamamen ÖZGÜN, sözde bir "özdeyiş" söylemek.
 
 Üslup kuralları:
-- Cümle, verilen hitapla ("yeğen" veya "kardeş") seslenerek kurulur; hitap başta, ortada veya sonda olabilir.
-- Ağır, duraksayan, bilgece bir giriş yap ("Bak yeğen...", "Kardeş, bir şey söyleyeyim mi..." gibi ama her seferinde farklı).
+- Söz, verilen hitapla ("yeğen" veya "kardeş") seslenerek kurulur. Hitabın yeri her istekte ayrıca belirtilir; ona uy. Hitabı en fazla iki kez kullan.
+- Ağır, duraksayan, bilgece bir giriş yap; kalıplaşmış "Bak yeğen..." girişini sürekli tekrarlama, her seferinde farklı bir açılış bul.
 - Cümle derin bir hayat dersi gibi başlasın; sonra çoğu zaman beklenmedik, absürd, komik bir yere sapsın. Bazen gerçekten anlamlı kalsın, bazen tamamen saçma ama kendinden emin bitsin.
 - Kumar, kart, blöf, hapishane, mahalle, eski İstanbul, tecrübe metaforlarını sev.
 - Kara mizah ve ironik son darbe serbest; küfür, hakaret, cinsellik, siyaset yok.
@@ -40,6 +40,13 @@ function ozelTalimat(hitap) {
 - Kimseye hakaret etme, hiçbir siyasetçiyi veya partiyi aşağılama, siyasi görüş savunma. Espri, dinleyenin bu konuya fazla takılmasıyla ilgili olsun.
 - 1 ila 3 cümle. Sona not ekleme, onu sistem ekleyecek.`;
 }
+
+// Hitabın cümledeki yeri: her söz "yeğen/kardeş" diye başlamasın.
+const HITAP_YERI = [
+  (h) => `Hitabı ("${h}") sözün en başına koy.`,
+  (h) => `Söze hitapla BAŞLAMA. Hitabı ("${h}") ilk cümlenin sonuna koy (örnek kalıp: "Hayat bir tavla masasıdır ${h}. ...").`,
+  (h) => `Söze hitapla BAŞLAMA. Hitabı ("${h}") ilk cümleciğin sonuna, virgülden hemen önce koy (örnek kalıp: "Bu dünyada herkes bir şey saklar ${h}, ...").`,
+];
 
 const MAX_WORD = 40;
 const RATE = { windowMs: 60_000, max: 8 };
@@ -112,6 +119,7 @@ async function generate(request, env) {
   const aci = ACILAR[Math.floor(Math.random() * ACILAR.length)];
   let userText = `Hitap: ${hitap}\nKelime: «${kelime}»\nBu seferki çağrışım (ilham için, zorunlu değil): ${aci}\nRastgele tohum: ${crypto.randomUUID().slice(0, 8)}`;
   if (ozel) userText += `\n\n${ozelTalimat(hitap)}`;
+  else userText += `\nHitabın yeri: ${HITAP_YERI[Math.floor(Math.random() * HITAP_YERI.length)](hitap)}`;
 
   const models = (env.GEMINI_MODELS || "gemini-3.5-flash-lite")
     .split(",").map((m) => m.trim()).filter(Boolean);

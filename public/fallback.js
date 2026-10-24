@@ -5,6 +5,8 @@ const GIRIS = [
   "Bak {h}...", "{H}, otur bakalım.", "Dinle {h}.", "{H}, bir şey söyleyeyim mi?",
   "Yaşlı adamın sözünü dinle {h}.", "{H}... şu çayı bir doldur da anlatayım.",
   "Ben bu hayatta çok şey gördüm {h}.", "Hapiste bir koğuş arkadaşım vardı {h}.",
+  "Hayat garip bir masa {h}.", "Otur şöyle {h}, anlatayım.", "Bu iş öyle kolay değil {h}.",
+  "Sana bir sır vereyim {h}.", "Dünya dediğin bir zar {h}, nereye düşeceği belli olmaz.",
 ];
 
 const GOVDE = [
