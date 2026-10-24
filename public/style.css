@@ -82,7 +82,9 @@ blockquote {
   font-weight: 500;
   font-size: clamp(21px, 4.6vw, 26px);
   line-height: 1.35;
+  white-space: pre-line;
 }
+blockquote .kelime { font-style: normal; font-weight: 600; color: var(--red); }
 .meta { margin: 16px 0 0; text-align: right; font-size: 14px; color: #6b5f55; }
 .copy {
   align-self: flex-end; margin-top: 10px;
